@@ -13,7 +13,7 @@ if (isset($_GET['page'])) {
 
             break;
         case '2':
-            $studio="20th Century Fox";
+            $studio="";
             $_SESSION['querySelect']=2;
             include "app/bodyRequest.php";
             break;
