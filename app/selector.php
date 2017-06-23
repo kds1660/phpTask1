@@ -2,8 +2,9 @@
 $sqlStudios = 'select name from studios';
 $studios = request($sqlStudios);
 ?>
+
 <form>
-    <select name="studios" onchange="selectStudio(this.value)">
+    <select name="studios" onchange="selectQueryBody(this.value)">
         <?php
         echo "<option>select studio</option>";
         while ($row = mysqli_fetch_array($studios[0])) {
