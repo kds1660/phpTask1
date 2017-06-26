@@ -1,6 +1,6 @@
 <?php
 $sqlStudios = 'select name from studios';
-$studios = request($sqlStudios);
+$studios = executeRequest($sqlStudios);
 ?>
 
 <form>

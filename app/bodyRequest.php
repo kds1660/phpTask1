@@ -22,7 +22,7 @@
         }
 
         foreach ($sql as $sqlQuery) {
-            $sqlRuesult[] = request($sqlQuery);
+            $sqlRuesult[] = executeRequest($sqlQuery);
         }
 
     } else {
