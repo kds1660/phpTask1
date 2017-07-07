@@ -1,14 +1,20 @@
-function selectQueryBody(str, page) {
+function selectQueryBody(str) {
         xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
+            document.getElementById("wrapper").innerHTML='';
+           /* var parser=new DOMParser();
+            var doc=parser.parseFromString(this.responseText,"text/html");
+            console.log( doc.getElementById("wrapper"));
+            document.getElementById("wrapper").HTML = doc.getElementById("wrapper");*/
             if (this.readyState == 4 && this.status == 200) {
-             document.getElementById("wrapper").innerHTML = this.responseText;
+                var parser=new DOMParser();
+                var doc=parser.parseFromString(this.responseText,"text/html");
+                doc = doc.getElementById('wrapper');
+             document.getElementById("wrapper").appendChild(doc);
             }
         };
-        if (!page) {
-            page=2
-        }
-        xmlhttp.open("GET","app/bodyRequest.php?page="+page+"&studio="+str,true);
+
+        xmlhttp.open("GET","/Page2/Show/"+str);
         xmlhttp.send();
 }
