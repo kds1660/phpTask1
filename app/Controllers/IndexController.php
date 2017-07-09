@@ -1,22 +1,23 @@
 <?php
+namespace App\Controllers\IndexController;
 
-class IndexController {
+use App\DbConnect as Dbconnect;
 
-    public function home() {
-        \App\DbConnect\DbConnect::getInstance();
-       if (\App\DbConnect\DbConnect::getError()){
-          $errorDb= \App\DbConnect\DbConnect::getError();
-           require_once ROOT.'/app/Views/Error.php';
-       }else {
-           require_once ROOT.'/app/Views/Home.php';
-       }
-
+class IndexController
+{
+    public function home()
+    {
+        Dbconnect\DbConnect::getInstance();
+        if (Dbconnect\DbConnect::getError()) {
+            $errorDb = Dbconnect\DbConnect::getError();
+            require_once ROOT . '/app/Views/Error.php';
+        } else {
+            require_once ROOT . '/app/Views/Home.php';
+        }
     }
 
-    public function error() {
-       require_once ROOT.'/app/Views/Error.php';
+    public function error()
+    {
+        require_once ROOT . '/app/Views/Error.php';
     }
 }
-
-
-?>

@@ -4,5 +4,5 @@
 
 <?php
 if (isset($errorDb)) {
-    echo "<div class='alert alert-danger'>Error connect (" .$errorDb . ")</div>";
+    echo "<div class='alert alert-danger'>Error connect (' .$errorDb . ')</div>";
 }

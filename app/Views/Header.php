@@ -7,12 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Requests</a>
+            <a class="navbar-brand" href="<?php ROOT."/"?>">Requests</a>
         </div>
         <div class="collapse navbar-collapse" id="responsive-menu">
             <ul class="nav navbar-nav">
-                <li><a href="/Page1/Show">Page1</a></li>
-                <li><a href="/Page2/Show">Page2</a></li>
+                <li><a href="<?php echo ROOT_DIR."/page1/show"?>">Page1</a></li>
+                <li><a href="<?php echo ROOT_DIR."/page2/show"?>">Page2</a></li>
             </ul>
         </div>
     </div>

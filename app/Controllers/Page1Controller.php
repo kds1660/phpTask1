@@ -1,12 +1,14 @@
 <?php
 
-class Page1Controller   {
+namespace App\Controllers\Page1Controller;
 
-    public function show() {
-        $sqlRuesult=RequestResult::page1();
+use App\Models\RequestResult as Request;
+
+class Page1Controller
+{
+    public function show()
+    {
+        $sqlRuesult=Request\RequestResult::page1();
         include ROOT . '/app/Views/Page.php';
     }
 }
-
-
-?>

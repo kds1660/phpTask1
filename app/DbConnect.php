@@ -1,15 +1,14 @@
 <?php
 
 namespace App\DbConnect;
+
 use \PDO;
 
 class DbConnect
 {
 
-
     private static $instance;
     private static $error;
-    private static $config;
 
     private function __construct()
     {
@@ -29,23 +28,19 @@ class DbConnect
         $pass=$config['password'];
         $db=$config['dbname'];
 
-        if (!isset(self::$instance)) {
+        if (null===self::$instance) {
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
             try {
                 self::$instance = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $pdo_options);
-            } catch (\PDOException $e){
+            } catch (\PDOException $e) {
                 self::$error = $e->getMessage();
             }
-
         }
         return self::$instance;
     }
 
-public static function getError()
-{
-    return self::$error;
+    public static function getError()
+    {
+        return self::$error;
+    }
 }
-
-}
-
-?>
