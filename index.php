@@ -1,6 +1,6 @@
 <?php
-
-require_once __DIR__ . '/app/config.php';
+define('ROOT', __DIR__);
+require_once ROOT . '/app/config.php';
 require_once ROOT.'/app/DbConnect.php';
 ini_set('error_reporting', E_ALL);
 ini_set('log_errors', 1);

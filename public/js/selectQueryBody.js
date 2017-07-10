@@ -8,7 +8,8 @@ function selectQueryBody(str) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(this.responseText, "text/html");
             doc = doc.getElementById('wrapper');
-            document.getElementById("wrapper").appendChild(doc);
+            console.log(doc.innerHTML);
+            document.getElementById("wrapper").innerHTML=doc.innerHTML;
         }
     };
 

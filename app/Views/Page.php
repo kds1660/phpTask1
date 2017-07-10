@@ -2,7 +2,7 @@
 <?php
 foreach ($sqlRuesult as $result): ?>
 
-    <li><?php echo "$result[0]"; ?></li>
+    <ul><li><?php echo "$result[0]"; ?></li></ul>
 
     <table class="table">
         <tr>

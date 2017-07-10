@@ -11,8 +11,8 @@
         </div>
         <div class="collapse navbar-collapse" id="responsive-menu">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo ROOT_DIR."/page1/show"?>">Page1</a></li>
-                <li><a href="<?php echo ROOT_DIR."/page2/show"?>">Page2</a></li>
+                <li><a href="/page1/show">Page1</a></li>
+                <li><a href="/page2/show">Page2</a></li>
             </ul>
         </div>
     </div>
