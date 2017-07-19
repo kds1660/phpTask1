@@ -1,7 +1,5 @@
 <div id="wrapper">
-    <?php
-    foreach ($sqlRuesult as $result) : ?>
-
+    <?php foreach ($sqlRuesult as $result) : ?>
         <ul>
             <li><?php echo "$result[0]"; ?></li>
         </ul>
