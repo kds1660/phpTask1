@@ -1,6 +1,5 @@
-function selectQueryBody(str) {
+function selectQueryBody(str,appRoot) {
     xmlhttp = new XMLHttpRequest();
-
     xmlhttp.onreadystatechange = function () {
         document.getElementById("wrapper").innerHTML = '';
 
@@ -8,11 +7,10 @@ function selectQueryBody(str) {
             var parser = new DOMParser();
             var doc = parser.parseFromString(this.responseText, "text/html");
             doc = doc.getElementById('wrapper');
-            console.log(doc.innerHTML);
             document.getElementById("wrapper").innerHTML=doc.innerHTML;
         }
     };
 
-    xmlhttp.open("GET", "/Page2/Show/" + str);
+    xmlhttp.open("GET", appRoot + "/Page2/Show/" + str);
     xmlhttp.send();
 }

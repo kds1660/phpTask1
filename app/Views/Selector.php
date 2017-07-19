@@ -9,7 +9,7 @@ $studios = $studios->fetchAll();
 ?>
 
 <form>
-    <select name="studios" onchange="selectQueryBody(this.value)">
+    <select name="studios" onchange="selectQueryBody(this.value,'<?=APPROOT?>')">
         <?php
         echo '<option>select studio</option>';
 
