@@ -1,12 +1,11 @@
 <?php
 
-namespace App\DbConnect;
+namespace App\Db;
 
 use \PDO;
 
-class DbConnect
+class Connection
 {
-
     private static $instance;
     private static $error;
 
@@ -21,21 +20,25 @@ class DbConnect
 
     public static function getInstance()
     {
-        $config = (array) parse_ini_file(dirname(__DIR__) . '/private/config.ini');
+        if (null === self::$instance) {
+            $config = (array) parse_ini_file('private/config.ini');
 
-        $host=$config['servername'];
-        $user=$config['username'];
-        $pass=$config['password'];
-        $db=$config['dbname'];
+            $user = $config['username'];
+            $db = $config['dbname'];
 
-        if (null===self::$instance) {
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
             try {
-                self::$instance = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $pdo_options);
+                self::$instance = new PDO(
+                    "mysql:host={$config['servername']};dbname=$db",
+                    $user,
+                    $config['password'],
+                    $pdo_options
+                );
             } catch (\PDOException $e) {
                 self::$error = $e->getMessage();
             }
         }
+
         return self::$instance;
     }
 

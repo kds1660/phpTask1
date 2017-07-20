@@ -1,0 +1,18 @@
+<?php /** @var \App\View\Base $this */ ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query task</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/selectQueryBody.js" type="text/javascript"></script>
+    <script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <?php echo $this->renderBlock('', 'header.phtml'); ?>
+    <?php echo $this->getContent(); ?>
+    <?php echo $this->renderBlock('', 'footer.phtml'); ?>
+</body>
+</html>

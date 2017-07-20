@@ -1,0 +1,9 @@
+<?php /** @var \App\View\AmountOfFeesFrom40To60 $this */ ?>
+
+<?php $data = $this->getQueryResults(); ?>
+<p><?php echo $data[0]; ?></p>
+<ul>
+    <?php foreach ($data[1] as $row) : ?>
+        <li><span><?php echo $row['full_name'];?></span><span><?php echo $row['amount_of_fees'];?></span></li>
+    <?php endforeach; ?>
+</ul>

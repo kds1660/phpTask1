@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Controllers\Page1Controller;
+namespace App\Controllers;
 
-use App\Models\RequestResult as Request;
-use Log\Logger as Log;
+use App\View\AmountOfFeesFrom40To60;
 
-class Page1Controller
+class Page1Controller extends \App\Controllers\AbstractController
 {
-    public function show()
+    public function showAction()
     {
-        $sqlRuesult=Request\RequestResult::page1();
-        include ROOT . '/app/Views/Page.php';
-        Log\Logger::log('Page1Controller - used method show');
+        echo $this->renderLayout(AmountOfFeesFrom40To60::class, 'amount_of_fees_from_40_to_60.phtml');
     }
 }
