@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../bootstrap.php';
 
 try {
-    $router = new \App\App\Router();
+    $router = new App\System\Router();
     $router->dispatchRequest();
 } catch (Exception $e) {
-    \App\App\Logger::log($e->getMessage());
+    App\System\Logger::log($e->getMessage());
     echo $e->getMessage();
 }

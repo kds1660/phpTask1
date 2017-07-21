@@ -8,7 +8,7 @@ class AbstractBlock
      * @param string $template
      * @return string
      */
-    public function toHtml($template = ''): string
+    public function toHtml($template = '')
     {
         if (!$template) {
             $fullClassName = explode('\\', strtolower(get_class($this)));
@@ -42,4 +42,6 @@ class AbstractBlock
     {
         return Layout::getContent();
     }
+
+
 }

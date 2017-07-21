@@ -8,10 +8,4 @@ class IndexController extends AbstractController
     {
         echo $this->renderLayout();
     }
-//
-//    public function errorAction()
-//    {
-//        Logger::log('IndexController - Load Errorpage');
-//        require_once 'app/Views/Error.php';
-//    }
 }

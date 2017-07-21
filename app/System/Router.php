@@ -1,6 +1,6 @@
 <?php
 
-namespace App\App;
+namespace App\System;
 
 class Router
 {
@@ -10,7 +10,7 @@ class Router
         $requestString = trim($requestString, '/');
         $requestParts = explode('/', $requestString);
         $partsNumber = count($requestParts);
-
+//todo not index - error
         $action = $requestParts[$partsNumber - 1] ?: 'index';
         $action .= 'Action';
         unset($requestParts[$partsNumber - 1]);
@@ -25,8 +25,19 @@ class Router
         }
 
         $controllerClassName = sprintf('\App\Controllers\%sController', $controller);
-        $controller = new $controllerClassName;
+        $queryStudio=$_POST['studio'] ?? null;
+        if(class_exists($controllerClassName)) {
+            $controller = new $controllerClassName($queryStudio);
 
-        $controller->$action();
+        } else {
+            $controllerClassName='\App\Controllers\IndexController';
+            $controller = new $controllerClassName();
+            $action='errorAction';
+        }
+
+        method_exists($controller,$action)?$controller->$action():$controller->errorAction();
+
+
+
     }
 }

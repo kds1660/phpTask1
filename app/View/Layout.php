@@ -17,7 +17,8 @@ class Layout
             $blockClass = Base::class;
         }
         /** @var AbstractBlock $block */
-        $block = new $blockClass;
+
+            $block=is_string($blockClass) ? new $blockClass:$blockClass;
 
         return $block->toHtml($template);
     }
@@ -27,17 +28,20 @@ class Layout
      * @param string $template
      * @return string
      */
-    public static function renderContent($blockClass, $template = ''): string
+    public static function renderContent(): string
     {
-        if ($blockClass || $template) {
-            self::$content = self::render($blockClass, $template);
-        }
+
         return self::render();
     }
 
     /**
      * @return string
      */
+    public static function addContent($blockClass, $template)
+    {
+        self::$content .= self::render($blockClass, $template);
+    }
+
     public static function getContent(): string
     {
         return self::$content;

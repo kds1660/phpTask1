@@ -1,21 +1,17 @@
 <?php
-namespace App\Controllers\Page2Controller;
+namespace App\Controllers;
 
-use App\Models\RequestResult as Request;
-use Log\Logger as Log;
+use App\View\SelectStudios;
+use App\View\StudioFilms;
+use App\View\StudioActors;
 
-class Page2Controller
+class Page2Controller extends AbstractController
 {
-    public function __construct($query)
+    public function showAction()
     {
-        $this->query = $query;
-    }
-
-    public function show()
-    {
-        $sqlRuesult=Request\RequestResult::page2($this->query);
-        include ROOT . '/app/Views/Selector.php';
-        include ROOT . '/app/Views/Page.php';
-        Log\Logger::log("Page2Controller - used method show for studio ".$this->query);
+        $this->addLayoutContent(SelectStudios::class, 'selector.phtml');
+        $this->addLayoutContent(StudioActors::class, 'studio_actors.phtml');
+        $this->addLayoutContent(StudioFilms::class, 'studio_films.phtml');
+        echo $this->renderLayout();
     }
 }

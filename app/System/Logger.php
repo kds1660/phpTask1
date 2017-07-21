@@ -1,10 +1,10 @@
 <?php
 
-namespace App\App;
+namespace App\System;
 
 class Logger
 {
-    private static $log_file = 'var/log/app.log';
+    private static $log_file = 'Log/app.log';
 
     public static function log($log)
     {
