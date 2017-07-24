@@ -5,11 +5,10 @@ namespace App\Db;
 class StudioActorsModel extends AbstractModel
 {
     /**
+     * @param null $studio
      * @return array
      */
-
-
-    public function getStudioActors($studio=null): array
+    public function getResult($studio = null): array
     {
         $sql = <<<SQL
 SELECT studios.name as StudioName, count(DISTINCT flm.id_film) as films, count(fs.id_fee) as fees_number, 
@@ -21,7 +20,7 @@ where
 studios.name=:studio
 GROUP by studios.id_studio
 SQL;
-        $queryResults = $this->runSqlQuery($sql,$studio);
+        $queryResults = $this->runSqlQuery($sql, $studio);
 
         return [$sql, $queryResults];
     }

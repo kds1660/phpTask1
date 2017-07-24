@@ -10,8 +10,8 @@ class Router
         $requestString = trim($requestString, '/');
         $requestParts = explode('/', $requestString);
         $partsNumber = count($requestParts);
-//todo not index - error
-        $action = $requestParts[$partsNumber - 1] ?: 'index';
+
+        $action = $requestParts[$partsNumber - 1] ?: 'Index';
         $action .= 'Action';
         unset($requestParts[$partsNumber - 1]);
 
@@ -25,19 +25,15 @@ class Router
         }
 
         $controllerClassName = sprintf('\App\Controllers\%sController', $controller);
-        $queryStudio=$_POST['studio'] ?? null;
-        if(class_exists($controllerClassName)) {
+        $queryStudio = $_POST['studio'] ?? null;
+        if (class_exists($controllerClassName)) {
             $controller = new $controllerClassName($queryStudio);
-
         } else {
-            $controllerClassName='\App\Controllers\IndexController';
+            $controllerClassName = '\App\Controllers\IndexController';
             $controller = new $controllerClassName();
-            $action='errorAction';
+            $action = 'errorAction';
         }
 
-        method_exists($controller,$action)?$controller->$action():$controller->errorAction();
-
-
-
+        method_exists($controller, $action) ? $controller->$action() : $controller->errorAction();
     }
 }

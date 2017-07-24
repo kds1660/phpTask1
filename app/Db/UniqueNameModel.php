@@ -7,7 +7,7 @@ class UniqueNameModel extends AbstractModel
     /**
      * @return array
      */
-    public function getUniqueLastName(): array
+    public function getResult(): array
     {
         $sql = <<<SQL
 SELECT concat(a1.first_name,' ',a1.last_name) as full_name FROM actors a1

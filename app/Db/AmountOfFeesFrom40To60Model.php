@@ -2,9 +2,9 @@
 
 namespace App\Db;
 
-class AmountFeesModel extends AbstractModel
+class AmountOfFeesFrom40To60Model extends AbstractModel
 {
-    public function getAmountOfFeesFrom40To60(): array
+    public function getResult(): array
     {
         $sql = <<<SQL
 SELECT concat(first_name,' ',last_name) as full_name, sum(fee) as amount_of_fees FROM actors
@@ -17,5 +17,4 @@ SQL;
 
         return [$sql, $queryResults];
     }
-
 }

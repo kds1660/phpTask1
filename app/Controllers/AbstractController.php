@@ -8,17 +8,16 @@ use App\System\Logger;
 
 abstract class AbstractController
 {
-    /**
-     * @param string $contentBlock
-     * @param string $contentTemplate
-     * @return string
-     */
-
     protected function renderLayout(): string
     {
         return Layout::renderContent();
     }
 
+    /**
+     * @param string $contentBlock
+     * @param string $contentTemplate
+     * @return string
+     */
     protected function addLayoutContent($contentBlock = '', $contentTemplate = '')
     {
         return Layout::addContent($contentBlock, $contentTemplate);
@@ -30,5 +29,4 @@ abstract class AbstractController
         $this->addLayoutContent(Base::class, 'error_page.phtml');
         echo $this->renderLayout();
     }
-
 }

@@ -18,10 +18,10 @@ class Connection
     }
 
 
-    public static function getInstance()
+    public static function getInstance(): \PDO
     {
         if (null === self::$instance) {
-            $config = (array) parse_ini_file('private/config.ini');
+            $config = (array)parse_ini_file('private/config.ini');
 
             $user = $config['username'];
             $db = $config['dbname'];

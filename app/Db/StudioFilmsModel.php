@@ -2,13 +2,13 @@
 
 namespace App\Db;
 
-class StudioFilmModel extends AbstractModel
+class StudioFilmsModel extends AbstractModel
 {
     /**
+     * @param null $studio
      * @return array
      */
-
-    public function getStudioFilms($studio=null): array
+    public function getResult($studio = null): array
     {
         $sql = <<<SQL
 SELECT name ,concat(first_name,' ',last_name) as actor, count(id_film) as films from studios

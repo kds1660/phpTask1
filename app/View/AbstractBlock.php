@@ -2,13 +2,14 @@
 
 namespace App\View;
 
-class AbstractBlock
+abstract class AbstractBlock
 {
     /**
      * @param string $template
      * @return string
      */
-    public function toHtml($template = '')
+
+    public function toHtml($template = ''): string
     {
         if (!$template) {
             $fullClassName = explode('\\', strtolower(get_class($this)));
@@ -43,5 +44,12 @@ class AbstractBlock
         return Layout::getContent();
     }
 
+    public function getQueryResults($sql = null)
+    {
+        $search = explode('\\', get_class($this));
+        $search = 'App\\Db\\' . $search[count($search) - 1] . 'Model';
+        $model = new $search();
+        return $model->getResult($sql);
+    }
 
 }

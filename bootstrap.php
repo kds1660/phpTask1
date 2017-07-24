@@ -1,6 +1,6 @@
 <?php
 
-$dir = dir( __DIR__);
+$dir = dir(__DIR__);
 chdir($dir->path);
 ini_set('error_reporting', E_ALL);
 ini_set('log_errors', 1);

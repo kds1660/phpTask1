@@ -18,14 +18,12 @@ class Layout
         }
         /** @var AbstractBlock $block */
 
-            $block=is_string($blockClass) ? new $blockClass:$blockClass;
+        $block = is_string($blockClass) ? new $blockClass : $blockClass;
 
         return $block->toHtml($template);
     }
 
     /**
-     * @param string $blockClass
-     * @param string $template
      * @return string
      */
     public static function renderContent(): string
@@ -34,9 +32,6 @@ class Layout
         return self::render();
     }
 
-    /**
-     * @return string
-     */
     public static function addContent($blockClass, $template)
     {
         self::$content .= self::render($blockClass, $template);

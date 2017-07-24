@@ -11,7 +11,6 @@ class SelectStudiosModel extends AbstractModel
     public function getStudios(): array
     {
         $sql = 'select name from studios';
-        $queryResults = $this->runSqlQuery($sql, '');
-        return $queryResults;
+        return $this->runSqlQuery($sql, '');
     }
 }
