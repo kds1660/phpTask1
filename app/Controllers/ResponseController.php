@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Db\AbstractModel;
 use App\View\Layout;
 use App\View\StudioFilms;
 use App\View\StudioActors;
 
-class ResponseController
+class ResponseController extends AbstractController
 {
     private $receiveResponse;
 
@@ -20,10 +21,5 @@ class ResponseController
         $this->addLayoutContent(new StudioActors($this->receiveResponse), 'studio_actors.phtml');
         $this->addLayoutContent(new StudioFilms($this->receiveResponse), 'studio_films.phtml');
         echo Layout::getContent();
-    }
-
-    protected function addLayoutContent($contentBlock = '', $contentTemplate = '')
-    {
-        return Layout::addContent($contentBlock, $contentTemplate);
     }
 }

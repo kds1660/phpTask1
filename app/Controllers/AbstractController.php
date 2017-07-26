@@ -16,7 +16,6 @@ abstract class AbstractController
     /**
      * @param string $contentBlock
      * @param string $contentTemplate
-     * @return string
      */
     protected function addLayoutContent($contentBlock = '', $contentTemplate = '')
     {
