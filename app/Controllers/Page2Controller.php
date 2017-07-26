@@ -9,9 +9,9 @@ class Page2Controller extends AbstractController
 {
     public function showAction()
     {
-        $this->addLayoutContent(SelectStudios::class, 'selector.phtml');
-        $this->addLayoutContent(StudioActors::class, 'studio_actors.phtml');
-        $this->addLayoutContent(StudioFilms::class, 'studio_films.phtml');
+        $this->renderLayout(SelectStudios::class, 'selector.phtml');
+        $this->renderLayout(StudioActors::class, 'studio_actors.phtml');
+        $this->renderLayout(StudioFilms::class, 'studio_films.phtml');
         echo $this->renderLayout();
     }
 }

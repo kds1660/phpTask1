@@ -26,15 +26,18 @@ class Layout
     /**
      * @return string
      */
-    public static function renderContent(): string
+    public static function renderContent($blockClass = '', $template = '')
     {
-
-        return self::render();
+        if ($blockClass==''&&$template=='') {
+            return self::render();
+        } else {
+            self::$content .= self::render($blockClass, $template);
+        }
     }
 
     public static function addContent($blockClass, $template)
     {
-        self::$content .= self::render($blockClass, $template);
+
     }
 
     public static function getContent(): string

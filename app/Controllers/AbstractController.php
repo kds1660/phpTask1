@@ -8,9 +8,9 @@ use App\System\Logger;
 
 abstract class AbstractController
 {
-    protected function renderLayout(): string
+    protected function renderLayout($contentBlock = '', $contentTemplate = '')
     {
-        return Layout::renderContent();
+        return Layout::renderContent($contentBlock, $contentTemplate);
     }
 
     /**

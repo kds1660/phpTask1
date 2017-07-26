@@ -18,8 +18,8 @@ class ResponseController extends AbstractController
 
     public function responseAction()
     {
-        $this->addLayoutContent(new StudioActors($this->receiveResponse), 'studio_actors.phtml');
-        $this->addLayoutContent(new StudioFilms($this->receiveResponse), 'studio_films.phtml');
+        $this->renderLayout(new StudioActors($this->receiveResponse), 'studio_actors.phtml');
+        $this->renderLayout(new StudioFilms($this->receiveResponse), 'studio_films.phtml');
         echo Layout::getContent();
     }
 }
