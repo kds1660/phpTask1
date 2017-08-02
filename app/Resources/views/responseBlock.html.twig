@@ -1,0 +1,24 @@
+{% block content %}
+    {% for block in blocks %}
+        <p>{{ block[0] }}</p>
+        <table class="table">
+            <tr>
+
+                {% if block[1][0] is defined %}
+
+                    {% for key in block[1][0]|keys %}
+                        <TH>{{ key }}</TH>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+
+            {% for res in block[1] %}
+                <tr>
+                    {% for row in res %}
+                        <TD>{{ row }}</TD>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}

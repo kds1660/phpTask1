@@ -1,0 +1,9 @@
+<form>
+    <select name="studios" onchange="selectQueryBody(this.value)">
+        '<option>select studio</option>'
+
+        {% for option in selector %}
+        <option>{{option['name']}}</option>
+        {% endfor %}
+    </select>
+</form>
