@@ -3,51 +3,59 @@
 // src/AppBundle/Controller/Page2Controller.php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Studios;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Model;
+use Symfony\Component\HttpFoundation\Response;
 
 class Page2Controller extends DefaultController
 {
     /**
+     *  * @param Request $request
+     * @return Response
      * @Route("/page2/show")
      */
-    public function indexAction(): Response
+
+    public function indexAction(Request $request): Response
     {
-        $block = new Model\StudioActorsModel();
-        $this->addContent($block);
-        $block = new Model\StudioFilmsModel();
-        $this->addContent($block);
-        $selector = new Model\SelectStudiosModel();
+        $repository = $this->getDoctrine()
+            ->getRepository(Studios::class);
 
-        return new Response($this->renderView('page2.html.twig', [
-            'selector' => $this->getResult($selector),
-            'blocks' => $this->getBlock(),
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]));
-    }
+        $this->addContent($repository->studioActors());
+        $this->addContent($repository->studioFilms());
 
-    /**
-     * @Route("/page2/studio")
-     */
-    public function studioAction(Request $request)
-    {
-        $studio = $request->request->get('studio');
-        $block = new Model\StudioActorsModel();
-        $this->addContent($block, $studio);
-        $block = new Model\StudioFilmsModel();
-        $this->addContent($block, $studio);
-
-
-        if ($request->headers->get('Content-Type') === 'application/json') {
-            return new JsonResponse($this->getBlock());
-        }
-
-        return $this->render('responseBlock.html.twig', [
-            'blocks' => $this->getBlock(),
+        $selector = $repository->selectStudios();
+        return $this->render('page1.html.twig', [
+            'selector' => $selector,
+            'blocks' => $this->getContent(),
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse|Response
+     * @Route("/page2/studio")
+     */
+
+    public function studioAction(Request $request)
+    {
+        $studio = $request->request->get('studio');
+        //TODO get json request params
+        $repository = $this->getDoctrine()
+            ->getRepository(Studios::class);
+
+        $this->addContent($repository->studioActors($studio));
+        $this->addContent($repository->studioFilms($studio));
+
+        if ($request->headers->get('Content-Type') === 'application/json') {
+            return new JsonResponse($this->getContent());
+        }
+        return $this->render('responseBlock.html.twig', [
+            'blocks' => $this->getContent(),
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
+        ]);
+    }
+
 }

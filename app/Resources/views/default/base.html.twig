@@ -18,8 +18,8 @@
 <body>
 {{ include('default/header.phtml') }}
 {% if selector is defined %}
-    {{ include('default/selector.html.twig') }}{# todo render#}
-{% endif %}
+{{ include('default/selector.phtml') }}{# todo render#}
+{% endif  %}
 <div id="wrapper">{% block content %}{% endblock %}</div>
 {{ include('default/footer.phtml') }}
 </body>

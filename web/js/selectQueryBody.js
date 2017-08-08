@@ -6,6 +6,6 @@ function selectQueryBody(str) {
         dataType: "html"
     }).done(function (data) {
         $('#wrapper').html(data);
-        console.log(error);
+        console.log('ok');
     });
 }
