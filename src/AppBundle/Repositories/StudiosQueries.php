@@ -54,10 +54,8 @@ sum(fs.fee) as fees_sum, avg(fs.fee) as fees_avg')
 
     public function selectStudios():array
     {
-        $repository = $this->getEntityManager();
-        $query = $repository->createQueryBuilder()
+        $query = $this->createQueryBuilder('s')
             ->select('s.name')
-            ->from(Studios::class, 's')
             ->getQuery();
         return $query->getResult();
     }
