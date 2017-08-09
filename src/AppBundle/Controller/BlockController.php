@@ -32,7 +32,7 @@ class BlockController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getRepository(Actors::class);
-        return $this->render('blocks/unuqieName.html.twig', [
+        return $this->render('blocks/uniqueName.html.twig', [
             'sqlText' => $repository->getUniqueNameQuery()->getSQL(),
             'sqlResult' => $repository->uniqueName(),
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
