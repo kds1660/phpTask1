@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Actors;
 use AppBundle\Entity\Studios;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,18 +10,31 @@ use Symfony\Component\HttpFoundation\Response;
 class BlockController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param $entityClassName
+     * @param $string
+     * @param string $studio
+     * @return Response
      */
-    public function amountOfFeesAction(): Response
+    private function formTemplate($entityClassName, $methodString, $studio = ''): Response
     {
         $repository = $this->getDoctrine()
-            ->getRepository(Actors::class);
-
-        return $this->render('blocks/amountOfFeesBlock.html.twig', [
-            'sqlText' => $repository->getAmountOfFeesQuery()->getSQL(),
-            'sqlResult' => $repository->amountOfFeesFrom40To60(),
+            ->getRepository($entityClassName);
+        $viewTemplate = 'blocks/' . $methodString . '.html.twig';
+        $sqlText = 'get' . lcfirst($methodString) . 'Query';
+        return $this->render($viewTemplate, [
+            'sqlText' => $repository->$sqlText()->getSQL(),
+            'sqlResult' => $repository->$methodString($studio),
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function amountOfFeesFrom40To60Action(): Response
+    {
+        $str = str_replace('Action', '', __FUNCTION__);
+        return $this->formTemplate(Actors::class, $str);
     }
 
     /**
@@ -30,42 +42,27 @@ class BlockController extends Controller
      */
     public function uniqueNameAction(): Response
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Actors::class);
-        return $this->render('blocks/uniqueName.html.twig', [
-            'sqlText' => $repository->getUniqueNameQuery()->getSQL(),
-            'sqlResult' => $repository->uniqueName(),
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+        $str = str_replace('Action', '', __FUNCTION__);
+        return $this->formTemplate(Actors::class, $str);
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param string $studio
+     * @return Response
      */
     public function studioActorsAction($studio = ''): Response
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Studios::class);
-
-        return $this->render('blocks/studioActors.html.twig', [
-            'sqlText' => $repository->getStudioActorsQuery()->getSQL(),
-            'sqlResult' => $repository->studioActors($studio),
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+        $str = str_replace('Action', '', __FUNCTION__);
+        return $this->formTemplate(Studios::class, $str, $studio);
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param string $studio
+     * @return Response
      */
     public function studioFilmsAction($studio = ''): Response
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Studios::class);
-
-        return $this->render('blocks/studioFilms.html.twig', [
-            'sqlText' => $repository->getStudioFilmsQuery()->getSQL(),
-            'sqlResult' => $repository->studioFilms($studio),
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+        $str = str_replace('Action', '', __FUNCTION__);
+        return $this->formTemplate(Studios::class, $str, $studio);
     }
 }

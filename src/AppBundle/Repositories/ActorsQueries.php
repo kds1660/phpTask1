@@ -10,7 +10,7 @@ class ActorsQueries extends EntityRepository
     /**
      * @return \Doctrine\ORM\Query
      */
-    public function getAmountOfFeesQuery()
+    public function getAmountOfFeesFrom40To60Query()
     {
         $query = $this->createQueryBuilder('a')
             ->select("CONCAT(a.firstName,' ',a.lastName) as full_name, sum(f.fee) as amount_of_fees")
@@ -28,7 +28,7 @@ class ActorsQueries extends EntityRepository
      */
     public function amountOfFeesFrom40To60(): array
     {
-        return $this->getAmountOfFeesQuery()->getResult();
+        return $this->getAmountOfFeesFrom40To60Query()->getResult();
     }
 
     /**
