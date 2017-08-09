@@ -5,16 +5,14 @@ namespace AppBundle\Repositories;
 use AppBundle\Entity\Actors;
 use AppBundle\Entity\Fees;
 use AppBundle\Entity\Films;
-use AppBundle\Entity\Studios;
 use Doctrine\ORM\EntityRepository;
 
 class StudiosQueries extends EntityRepository
 {
     /**
-     * @param string $studio
-     * @return array
+     * @return \Doctrine\ORM\Query
      */
-    public function studioActors($studio = ''):array
+    public function getStudioFilmsQuery()
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.name as StudioName, count(DISTINCT flm.idFilm) as films, count(fs.idFee) as fees_number,
@@ -24,19 +22,26 @@ sum(fs.fee) as fees_sum, avg(fs.fee) as fees_avg')
             ->innerJoin(Fees::class, 'fs', 'WITH', 'fs.idFilm=flm.idFilm')
             ->where('s.name=:studio')
             ->setParameters(array(
-                'date' => new \DateTime('-10 years'),
-                'studio' => $studio
+                'date' => new \DateTime('-10 years')
             ))
-            ->groupBy('s.idStudio')
-            ->getQuery();
-        return [$query->getSQL(), $query->getResult()];
+            ->groupBy('s.idStudio');
+        return $query->getQuery();
     }
 
     /**
      * @param string $studio
      * @return array
      */
-    public function studioFilms($studio = ''):array
+    public function studioFilms($studio = ''): array
+    {
+        $result = $this->getStudioFilmsQuery()->setParameter('studio', $studio);
+        return $result->getResult();
+    }
+
+    /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function getStudioActorsQuery()
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.name ,concat(a.firstName,\' \',a.lastName) as actor, count(fs.idFilm) as films')
@@ -44,15 +49,21 @@ sum(fs.fee) as fees_sum, avg(fs.fee) as fees_avg')
             ->leftJoin(Fees::class, 'fs', 'WITH', 'fs.idFilm=sf.idFilm')
             ->leftJoin(Actors::class, 'a', 'WITH', 'fs.idActor=a.idActor')
             ->where('s.name=:studio')
-            ->setParameters(array(
-                'studio' => $studio
-            ))
-            ->groupBy('a.idActor')
-            ->getQuery();
-        return [$query->getSQL(), $query->getResult()];
+            ->groupBy('a.idActor');
+        return $query->getQuery();
     }
 
-    public function selectStudios():array
+    /**
+     * @param string $studio
+     * @return array
+     */
+    public function studioActors($studio = ''): array
+    {
+        $result = $this->getStudioActorsQuery()->setParameter('studio', $studio);
+        return $result->getResult();
+    }
+
+    public function selectStudios(): array
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.name')

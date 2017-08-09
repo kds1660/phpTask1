@@ -19,16 +19,12 @@ class Page2Controller extends DefaultController
 
     public function indexAction(Request $request): Response
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(Studios::class);
+        $selector = $this->getDoctrine()
+            ->getRepository(Studios::class)
+            ->selectStudios();
 
-        $this->addContent($repository->studioActors());
-        $this->addContent($repository->studioFilms());
-
-        $selector = $repository->selectStudios();
-        return $this->render('page1.html.twig', [
+        return $this->render('page2.html.twig', [
             'selector' => $selector,
-            'blocks' => $this->getContent(),
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
@@ -43,17 +39,8 @@ class Page2Controller extends DefaultController
     {
         $studio = $request->request->get('studio');
         //TODO get json request params
-        $repository = $this->getDoctrine()
-            ->getRepository(Studios::class);
-
-        $this->addContent($repository->studioActors($studio));
-        $this->addContent($repository->studioFilms($studio));
-
-        if ($request->headers->get('Content-Type') === 'application/json') {
-            return new JsonResponse($this->getContent());
-        }
         return $this->render('responseBlock.html.twig', [
-            'blocks' => $this->getContent(),
+            'studio' => $studio,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }

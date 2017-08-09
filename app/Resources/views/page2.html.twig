@@ -1,28 +1,11 @@
 {% extends 'default/base.html.twig' %}
 {% block content %}
-    {% for block in blocks %}
-        <p>{{ block[0] }}</p>
-        <table class="table">
-            <tr>
-                {% if block[1][0] is defined %}
-                {% for key in block[1][0]|keys %}
 
-                    <TH>{{ key }}</TH>
-                {% endfor %}
-                {% endif  %}
-            </tr>
+    {{ render(controller(
+    'AppBundle:Block:studioFilms'
+    )) }}
 
-            {% for res in block[1] %}
-                <tr>
-                    {% for row in res %}
-                        <TD>{{ row }}</TD>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-
-
-        </table>
-
-
-    {% endfor %}
+    {{ render(controller(
+    'AppBundle:Block:studioActors'
+    )) }}
 {% endblock %}
