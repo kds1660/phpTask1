@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Query task{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('js/selectQueryBody.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+    {% endblock %}
+
+</head>
+<body>
+{{ include('@App/default/header.phtml') }}
+{% block selector %}{% endblock %}
+<div id="wrapper">{% block content %}{% endblock %}</div>
+{{ include('@App/default/footer.phtml') }}
+</body>
+</html>
+

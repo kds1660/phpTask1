@@ -1,0 +1,14 @@
+{% extends '@App/base.html.twig' %}
+{% block content %}
+    {{ render(controller(
+    'app.studio_films:getBlock'
+    )) }}
+
+    {{ render(controller(
+    'app.studio_actors:getBlock'
+    )) }}
+{% endblock %}
+
+{% block selector %}
+    {{ include('@App/default/selector.phtml') }}{# todo render#}
+{% endblock %}

@@ -1,0 +1,16 @@
+<p>{{ sqlText }}</p>
+
+<table class="table">
+    <tr>
+        <TH>Full_Name</TH>
+        <TH>Amount_of_fees</TH>
+    </tr>
+
+    {% for res in sqlResult %}
+        <tr>
+            {% for row in res %}
+                <TD>{{ row }}</TD>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>

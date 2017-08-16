@@ -1,0 +1,10 @@
+{% extends '@App/base.html.twig' %}
+{% block content %}
+    {{ render(controller(
+    'app.amount_of_fees:getBlock'
+    )) }}
+
+    {{ render(controller(
+    'app.unique_name:getBlock'
+    )) }}
+{% endblock %}

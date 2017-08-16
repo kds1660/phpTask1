@@ -1,29 +1,26 @@
 <?php
 
-// src/AppBundle/Controller/Page2Controller.php
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Studios;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Page2Controller extends DefaultController
+class Page2Controller extends Controller
 {
     /**
-     *  * @param Request $request
      * @return Response
-     * @Route("/page2/show")
      */
 
-    public function indexAction(Request $request): Response
+    public function indexAction(): Response
     {
         $selector = $this->getDoctrine()
             ->getRepository(Studios::class)
             ->selectStudios();
 
-        return $this->render('page2.html.twig', [
+        return $this->render('@App/page2.html.twig', [
             'selector' => $selector,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
@@ -31,15 +28,14 @@ class Page2Controller extends DefaultController
 
     /**
      * @param Request $request
-     * @return JsonResponse|Response
-     * @Route("/page2/studio")
+     * @return Response
      */
 
-    public function studioAction(Request $request)
+    public function studioAction(Request $request) : Response
     {
         $studio = $request->request->get('studio');
         //TODO get json request params
-        return $this->render('responseBlock.html.twig', [
+        return $this->render('@App/responseBlock.html.twig', [
             'studio' => $studio,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);

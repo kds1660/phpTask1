@@ -4,13 +4,14 @@ namespace AppBundle\Repositories;
 
 use AppBundle\Entity\Actors;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ActorsQueries extends EntityRepository
 {
     /**
      * @return \Doctrine\ORM\Query
      */
-    public function getAmountOfFeesFrom40To60Query()
+    public function getAmountOfFeesFrom40To60Query(): Query
     {
         $query = $this->createQueryBuilder('a')
             ->select("CONCAT(a.firstName,' ',a.lastName) as full_name, sum(f.fee) as amount_of_fees")
@@ -34,7 +35,7 @@ class ActorsQueries extends EntityRepository
     /**
      * @return \Doctrine\ORM\Query
      */
-    public function getUniqueNameQuery()
+    public function getUniqueNameQuery(): Query
     {
         $query = $this->createQueryBuilder('a1')
             ->select('concat(a1.firstName,\' \',a1.lastName) as full_name')

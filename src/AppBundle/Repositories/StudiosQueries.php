@@ -6,13 +6,14 @@ use AppBundle\Entity\Actors;
 use AppBundle\Entity\Fees;
 use AppBundle\Entity\Films;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class StudiosQueries extends EntityRepository
 {
     /**
      * @return \Doctrine\ORM\Query
      */
-    public function getStudioFilmsQuery()
+    public function getStudioFilmsQuery(): Query
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.name as StudioName, count(DISTINCT flm.idFilm) as films, count(fs.idFee) as fees_number,
@@ -41,7 +42,7 @@ sum(fs.fee) as fees_sum, avg(fs.fee) as fees_avg')
     /**
      * @return \Doctrine\ORM\Query
      */
-    public function getStudioActorsQuery()
+    public function getStudioActorsQuery(): Query
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.name ,concat(a.firstName,\' \',a.lastName) as actor, count(fs.idFilm) as films')

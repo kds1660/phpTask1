@@ -1,0 +1,17 @@
+services:
+
+    app.amount_of_fees:
+        class: AppBundle\Services\View\Block\AmountOfFeesFrom40To60
+        arguments: ["@templating","@doctrine.orm.entity_manager"]
+
+    app.unique_name:
+        class: AppBundle\Services\View\Block\UniqueName
+        arguments: ["@templating","@doctrine.orm.entity_manager"]
+
+    app.studio_actors:
+        class: AppBundle\Services\View\Block\StudioActors
+        arguments: ["@templating","@doctrine.orm.entity_manager"]
+
+    app.studio_films:
+        class: AppBundle\Services\View\Block\StudioFilms
+        arguments: ["@templating","@doctrine.orm.entity_manager"]

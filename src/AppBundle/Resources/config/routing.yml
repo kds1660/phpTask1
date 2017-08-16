@@ -1,0 +1,14 @@
+index_show:
+     path:     /
+     defaults: { _controller: FrameworkBundle:Template:template  ,
+                   template:    '@App/base.html.twig' }
+page1_show:
+    path:     /page1/show
+    defaults: { _controller: AppBundle:Page1:index }
+page2_show:
+    path:     /page2/show
+    defaults: { _controller: AppBundle:Page2:index }
+
+page2_studio:
+    path:     /page2/studio
+    defaults: { _controller: AppBundle:Page2:studio }
