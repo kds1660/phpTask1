@@ -15,3 +15,7 @@ services:
     app.studio_films:
         class: AppBundle\Services\View\Block\StudioFilms
         arguments: ["@templating","@doctrine.orm.entity_manager"]
+
+    app.studios_list:
+            class: AppBundle\Services\View\Block\StudiosList
+            arguments: ["@templating","@doctrine.orm.entity_manager"]

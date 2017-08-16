@@ -16,12 +16,8 @@ class Page2Controller extends Controller
 
     public function indexAction(): Response
     {
-        $selector = $this->getDoctrine()
-            ->getRepository(Studios::class)
-            ->selectStudios();
-
         return $this->render('@App/page2.html.twig', [
-            'selector' => $selector,
+            'selector' => $this->container->get('app.studios_list')->getStudios(),
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }

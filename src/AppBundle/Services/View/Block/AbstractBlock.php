@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 class AbstractBlock
 {
     private $templating;
-    private $em;
+    protected $em;
 
     public function __construct(EngineInterface $templating, EntityManagerInterface $entityManager)
     {
