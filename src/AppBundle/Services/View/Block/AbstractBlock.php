@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 class AbstractBlock
 {
-    private $templating;
+    protected $templating;
     protected $em;
 
     public function __construct(EngineInterface $templating, EntityManagerInterface $entityManager)

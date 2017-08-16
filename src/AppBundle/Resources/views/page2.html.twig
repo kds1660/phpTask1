@@ -10,5 +10,7 @@
 {% endblock %}
 
 {% block selector %}
-    {{ include('@App/default/selector.phtml') }}{# todo render#}
+    {{ render(controller(
+    'app.studios_list:getStudios'
+    )) }}
 {% endblock %}
