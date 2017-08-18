@@ -16,9 +16,7 @@ class Page2Controller extends Controller
 
     public function indexAction(): Response
     {
-        return $this->render('@App/page2.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('@App/page2.html.twig');
     }
 
     /**
@@ -31,9 +29,8 @@ class Page2Controller extends Controller
         $studio = $request->request->get('studio');
         //TODO get json request params
         return $this->render('@App/responseBlock.html.twig', [
-            'studio' => $studio,
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+            'studio' => $studio
+            ]);
     }
 
 }
