@@ -10,8 +10,28 @@ class UniqueName extends AbstractBlock
     /**
      * @return Response
      */
-    public function getBlock(): Response
+    public function renderBlock(): Response
     {
-        return $this->formTemplate(Actors::class, 'uniqueName');
+        return $this->templating->renderResponse('@App/blocks/uniqueName.html.twig', [
+            'sqlText' => $this->getUniqueNameSqlText(),
+            'sqlResult' => $this->getUniqueNameResult()]);
+    }
+
+    /**
+     * @return array
+     */
+    private function getUniqueNameResult(): array
+    {
+        $repository = $this->em->getRepository(Actors::class);
+        return $repository->uniqueName();
+    }
+
+    /**
+     * @return string
+     */
+    private function getUniqueNameSqlText(): string
+    {
+        $repository = $this->em->getRepository(Actors::class);
+        return $repository->GetUniqueNameQuery()->getSQL();
     }
 }

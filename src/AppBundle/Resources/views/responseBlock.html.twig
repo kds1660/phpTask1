@@ -1,9 +1,9 @@
 {% block content %}
     {{ render(controller(
-    'app.studio_films:getBlock', {'studio':studio}
+    'app.studio_films:renderBlock', {'studio':studio}
     )) }}
 
     {{ render(controller(
-    'app.studio_actors:getBlock', {'studio':studio}
+    'app.studio_actors:renderBlock', {'studio':studio}
     )) }}
 {% endblock %}

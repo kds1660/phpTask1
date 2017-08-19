@@ -15,7 +15,7 @@ class StudiosList extends AbstractBlock
         $selector = $this->em->getRepository(Studios::class)
             ->selectStudios();
 
-        return $this->templating->renderResponse('@App/default/selector.phtml', [
+        return $this->templating->renderResponse('@App/default/selector.html.twig', [
             'selector' => $selector
         ]);
     }

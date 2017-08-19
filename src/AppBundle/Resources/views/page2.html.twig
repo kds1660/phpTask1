@@ -1,11 +1,11 @@
 {% extends '@App/base.html.twig' %}
 {% block content %}
     {{ render(controller(
-    'app.studio_films:getBlock'
+    'app.studio_films:renderBlock'
     )) }}
 
     {{ render(controller(
-    'app.studio_actors:getBlock'
+    'app.studio_actors:renderBlock'
     )) }}
 {% endblock %}
 

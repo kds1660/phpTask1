@@ -11,8 +11,29 @@ class StudioActors extends AbstractBlock
      * @param string $studio
      * @return Response
      */
-    public function getBlock($studio = ''): Response
+    public function renderBlock($studio = ''): Response
     {
-        return $this->formTemplate(Studios::class, 'studioActors', $studio);
+        return $this->templating->renderResponse('@App/blocks/studioActors.html.twig', [
+            'sqlText' => $this->getStudioActorsSqlText(),
+            'sqlResult' => $this->getStudioActorsResult($studio)]);
+    }
+
+    /**
+     * @param string $studio
+     * @return array
+     */
+    private function getStudioActorsResult($studio = ''): array
+    {
+        $repository = $this->em->getRepository(Studios::class);
+        return $repository->studioActors($studio);
+    }
+
+    /**
+     * @return string
+     */
+    private function getStudioActorsSqlText(): string
+    {
+        $repository = $this->em->getRepository(Studios::class);
+        return $repository->GetStudioActorsQuery()->getSQL();
     }
 }
