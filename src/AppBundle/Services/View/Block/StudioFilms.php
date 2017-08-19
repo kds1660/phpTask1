@@ -34,6 +34,6 @@ class StudioFilms extends AbstractBlock
     private function getStudioFilmsSqlText(): string
     {
         $repository = $this->em->getRepository(Studios::class);
-        return $repository->GetStudioFilmsQuery()->getSQL();
+        return $repository->getStudioFilmsQuery()->getSQL();
     }
 }
